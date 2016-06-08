@@ -3,6 +3,7 @@
 **CORS middleware implementation with emphasis on configurability of dynamic origins.**
 
 [![Build Status](https://travis-ci.org/noderaider/universal-cors.svg?branch=master)](https://travis-ci.org/noderaider/universal-cors)
+[![codecov](https://codecov.io/gh/noderaider/universal-cors/branch/master/graph/badge.svg)](https://codecov.io/gh/noderaider/universal-cors)
 
 [![NPM](https://nodei.co/npm/universal-cors.png?stars=true&downloads=true)](https://nodei.co/npm/universal-cors/)
 

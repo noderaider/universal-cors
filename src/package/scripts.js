@@ -5,15 +5,15 @@
  */
 
  const GH_PAGES_ROOT = 'doc'
- const CODECOV_TOKEN = '40ea2f38-537a-410f-8d46-4a407b8c7c3b'
 
                           /** START SCRIPT STARTS BUILD WITH WATCHING ENABLED (USEFUL WITH NPM LINK) */
 export default ({}) => ({ 'start': 'run-p build-watch test-watch'
 
                           /** CLEAN EVERYTHING PRE BUILD */
-                        , 'clean': 'run-p clean-lib clean-doc'
+                        , 'clean': 'run-p clean-lib clean-doc clean-test'
                         , 'clean-lib': 'rimraf lib'
                         , 'clean-doc': 'rimraf doc'
+                        , 'clean-test': 'rimraf coverage.lcov'
 
                           /** COMPILE */
                         , 'prebuild': 'npm run clean'
@@ -21,9 +21,9 @@ export default ({}) => ({ 'start': 'run-p build-watch test-watch'
                         , 'build-watch': 'npm run build -- --watch'
 
                           /** TEST */
-                        , 'pretest-mocha': 'npm run build'
-                        , 'test-mocha': 'mocha --harmony --es_staging --require test/require'
-                        , 'test': `nyc npm run test-mocha && nyc report --reporter=text-lcov > coverage.lcov && codecov -t ${CODECOV_TOKEN}`
+                        , 'pretest': 'npm run build'
+                        , 'test': 'mocha --harmony --es_staging --require test/require'
+                        , 'coverage': 'nyc report --reporter=text-lcov > coverage.lcov && codecov'
                         , 'test-watch': 'npm run test-mocha -- --watch'
 
                           /** RELEASE */
