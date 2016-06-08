@@ -13,7 +13,7 @@ export default ({}) => ({ 'start': 'run-p build-watch test-watch'
                         , 'clean': 'run-p clean-lib clean-doc clean-test'
                         , 'clean-lib': 'rimraf lib'
                         , 'clean-doc': 'rimraf doc'
-                        , 'clean-test': 'rimraf coverage.lcov'
+                        , 'clean-test': 'rimraf coverage.lcov .nyc_output'
 
                           /** COMPILE */
                         , 'prebuild': 'npm run clean'
