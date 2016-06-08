@@ -1,7 +1,7 @@
 codecov:
   token: 40ea2f38-537a-410f-8d46-4a407b8c7c3b
   branch: master
-  bot: null
+  bot: cchamberlain
 
 coverage:
   precision: 2
