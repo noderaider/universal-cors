@@ -1,6 +1,6 @@
 ## universal-cors
 
-**Cors middleware implementation with emphasis on configurability of dynamic origins.**
+**CORS middleware implementation with emphasis on configurability of dynamic origins.**
 
 [![Build Status](https://travis-ci.org/noderaider/universal-cors.svg?branch=master)](https://travis-ci.org/noderaider/universal-cors)
 
