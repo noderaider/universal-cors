@@ -1,6 +1,6 @@
 {
   "name": "universal-cors",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "CORS middleware implementation with emphasis on configurability of dynamic origins.",
   "main": "lib/index.js",
   "files": [
