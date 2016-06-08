@@ -21,8 +21,9 @@ export default ({}) => ({ 'start': 'run-p build-watch test-watch'
                         , 'build-watch': 'npm run build -- --watch'
 
                           /** TEST */
-                        , 'pretest': 'npm run build'
-                        , 'test': 'mocha --harmony --es_staging --require test/require'
+                        , 'pretest-mocha': 'npm run build'
+                        , 'test-mocha': 'mocha --harmony --es_staging --require test/require'
+                        , 'test': 'nyc npm run test-mocha'
                         , 'coverage': 'nyc report --reporter=text-lcov > coverage.lcov && codecov'
                         , 'test-watch': 'npm run test-mocha -- --watch'
 
