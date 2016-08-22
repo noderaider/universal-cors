@@ -20,14 +20,6 @@ const getError = req => {
                               }
 }
 
-const getOptionsHeaders = req => {
-  return  { 'Access-Control-Allow-Origin': req.headers.origin
-          , 'Access-Control-Max-Age': 604800 // Specifies how long the preflight response can be cached in seconds
-          , 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE'
-          , 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-          , 'Access-Control-Allow-Credentials': true
-          }
-}
 
 const handleFailure = (req, res) => {
   res.writeHead(FAILURE_STATUS.code)
@@ -56,13 +48,13 @@ export function origins({ patterns, tracing = false, logger = console, logLevel 
 }
 
 
-export default function cors({ patterns, usePreflight = true, tracing = false, logger = console, logLevel = 'debug' } = {}) {
+export default function cors({ patterns, preflight = req => {}, tracing = false, logger = console, logLevel = 'debug' } = {}) {
   const log = (...args) => tracing ? logger[logLevel](...args) : () => {}
   const { isOk } = origins({ patterns, tracing, logger, logLevel })
 
   return (req, res, next = () => { log('proxy middleware executed') }) => {
-    if(usePreflight && req.method === 'OPTIONS') {
-      res.writeHead(200, getOptionsHeaders(req))
+    if(req.method === 'OPTIONS' && preflight) {
+      res.writeHead(200, preflight(req))
       res.end()
       log('preflight 200 response sent')
     } else {

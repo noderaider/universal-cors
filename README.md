@@ -43,12 +43,24 @@ cors([opts: Object]): function(req, res, next)
 **name**        | **type**                              | **default**   | **description**
 --------        | --------                              | -----------   | ---------------
 `patterns`      | `string|RegExp|Array<string|RegExp>`  | **required**  | the pattern(s) to test for cors origins, if pattern matches, the response will get valid cors response headers.
-`usePreflight`  | `boolean`                             | `true`        | issues preflight responses immediately and ends request for all requests with OPTIONS method
+`preflight`     | `function(req): responseHeaders`      | `(req) => {}` | issues preflight responses for OPTIONS method requests and returns specified headers
 `tracing`       | `boolean`                             | `false`       | toggles tracing for debugging purposes
 `logger`        | `Object`                              | `console`     | the logger object to trace to
 `loglevel`      | `string`                              | `'info'`      | the log level to use when tracing (`error`, `warn`, `info`, `trace`)
 
 
+An example of what you might set for preflight:
+
+```js
+const preflight = req => {
+  return  { 'Access-Control-Allow-Origin': req.headers.origin
+          , 'Access-Control-Max-Age': 604800 // Specifies how long the preflight response can be cached in seconds
+          , 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE'
+          , 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+          , 'Access-Control-Allow-Credentials': true
+          }
+}
+```
 
 **origins export - granular origin testing functionality**
 
